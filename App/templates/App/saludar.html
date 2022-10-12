@@ -7,6 +7,16 @@
     <title>Mi Proyecto Final</title>
 </head>
 <body>
-    ESTE ES MI PRIMER FRONTEND.
+    ESTE ES MI PRIMER FRONTEND. {{nombre}}, {{apellido}}
+    <br>
+    {% for nota in notas %}
+
+        {% if nota > 5 %}
+            <p style="color:green">{{nota}}</p>
+        {% else %}
+            <p style="color:red">{{nota}}</p>
+        {% endif %}
+        <br>
+    {% endfor %}
 </body>
 </html>
