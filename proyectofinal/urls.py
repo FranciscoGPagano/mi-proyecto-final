@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from App.views import index, index2, index3, imc, mostrar_familiares
+from App.views import index, index2, index3, imc, mostrar_familiares, BuscarFamiliar
 from blog.views import index as blog_index
 
 urlpatterns = [
@@ -26,5 +26,6 @@ urlpatterns = [
     path('imc/<peso>/<altura>', imc),
     path('mis_familiares/', mostrar_familiares),
     path('blog/', blog_index),
+    path('mi-familia/buscar', BuscarFamiliar.as_view()),
 
 ]
