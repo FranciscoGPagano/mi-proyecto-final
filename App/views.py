@@ -2,6 +2,7 @@ from django.shortcuts import render
 from App.models import Familiar
 from App.forms import Buscar, FamiliarForm
 from django.views import View
+from django.views.generic import ListView, CreateView, DeleteView, UpdateView
 
 def index(request):
     return render(request, "App/saludar.html",
@@ -72,3 +73,4 @@ class AltaFamiliar(View):
                                                         'msg_exito': msg_exito})
         
         return render(request, self.template_name, {"form": form})
+
