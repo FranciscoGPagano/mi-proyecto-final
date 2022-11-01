@@ -29,5 +29,6 @@ urlpatterns = [
     path('blog/', blog_index),
     path('mi-familia/buscar', BuscarFamiliar.as_view()),
     path('mi-familia/alta', AltaFamiliar.as_view()),
-    path('panel-familia/', include('panel_familia.urls'))
+    path('panel-familia/', include('panel_familia.urls')),
+    path('blog/', include('blog.urls')),
 ]
