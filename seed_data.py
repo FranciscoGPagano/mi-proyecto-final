@@ -6,3 +6,9 @@ Familiar(nombre="Samuel", direccion="Rio Parana 745", numero_pasaporte=345345).s
 Familiar(nombre="Florencia", direccion="Rio Parana 745", numero_pasaporte=567567).save()
 
 print("Se cargo con éxito los usuarios de pruebas")
+
+from blog.models import Post
+
+Post(title="Mi post", short_content="un post", content="sadljalsjdlkajsdljasljdlaksjd").save()
+
+print("Se cargo con éxito los post de pruebas")
