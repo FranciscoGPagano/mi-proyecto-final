@@ -1,8 +1,9 @@
 from blog.views import *
 from django.urls import path
 
+
 urlpatterns = [
-    path('', index, name='index-blog'),
+    path('index/', index, name="index-blog"),
     path('list/', ListPost.as_view(), name='list-post'),
     path('create/', CreatePost.as_view(), name="create-post"),
     path('detail/<int:pk>/', DetailPost.as_view(), name="detail-post"),
@@ -12,3 +13,4 @@ urlpatterns = [
     path('login/', BlogLogin.as_view(), name="blog-login"),
     path('logout/', BlogLogout.as_view(), name="blog-logout"),
 ]
+

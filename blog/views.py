@@ -6,22 +6,24 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView, LogoutView
 from django.urls import reverse_lazy
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.admin import User
 
-
+@login_required
 def index(request):
     configuracion = Configuracion.objects.first()
     return render(request, 'blog/index.html', {'configuracion': configuracion})
 
-@login_required
-def index(request):
-    return render(request, 'blog/index.html')
+#@login_required
+#def index(request):
+#    return render(request, 'blog/index.html', {'configuracion': configuracion})
 
 class ListPost(ListView):
     model = Post
 
 class CreatePost(CreateView):
     model=Post
-    fields = ['title', 'short_content', 'content']
+    fields = ['title', 'short_content', 'content', 'image']
     success_url = reverse_lazy("list-post")
 
 class DetailPost(DetailView):
@@ -29,7 +31,7 @@ class DetailPost(DetailView):
 
 class UpdatePost(UpdateView):
     model=Post
-    fields=['title', 'short_content', 'content']
+    fields = ['title', 'short_content', 'content', 'image']
     success_url = reverse_lazy("list-post")
 
 class DeletePost(DeleteView):
@@ -48,3 +50,13 @@ class BlogLogin(LoginView):
 
 class BlogLogout(LogoutView):
     template_name = 'blog/blog_logout.html'
+
+class BlogSignUp(CreateView):
+    form_class = UserCreationForm
+    success_url = reverse_lazy("blog-login")
+    template_name = "registration/signup.html"
+
+class ProfileUpdate(UpdateView):
+    model = User
+    fields = ['username']
+    success_url = reverse_lazy("blog-login")
