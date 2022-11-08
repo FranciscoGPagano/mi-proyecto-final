@@ -2,27 +2,22 @@ from django.shortcuts import render
 from blog.models import Configuracion, Post
 from django.views.generic import ListView, CreateView, DeleteView, UpdateView
 from django.views.generic.detail import DetailView
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView, LogoutView
 from django.urls import reverse_lazy
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.admin import User
 
-@login_required
 def index(request):
-    configuracion = Configuracion.objects.first()
-    return render(request, 'blog/index.html', {'configuracion': configuracion})
-
-#@login_required
-#def index(request):
-#    return render(request, 'blog/index.html', {'configuracion': configuracion})
+    posts = Post.objects.order_by('-date_published').all()
+    return render(request, 'blog/index.html', {'posts': posts})
 
 class ListPost(ListView):
     model = Post
+    paginate_by = 2
 
 class CreatePost(CreateView):
-    model=Post
+    model = Post
     fields = ['title', 'short_content', 'content', 'image']
     success_url = reverse_lazy("list-post")
 
@@ -58,5 +53,5 @@ class BlogSignUp(CreateView):
 
 class ProfileUpdate(UpdateView):
     model = User
-    fields = ['username']
+    fields = ['username', 'first_name', 'last_name', 'email']
     success_url = reverse_lazy("blog-login")
