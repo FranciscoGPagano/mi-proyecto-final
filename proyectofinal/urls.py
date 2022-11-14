@@ -15,23 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from App.views import (index, index2, index3, imc,
-                         mostrar_familiares, BuscarFamiliar, AltaFamiliar)
 from blog.views import index as blog_index
 from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('App/', index),
-    path('App/<nombre>/<apellido>', index2),
-    path('notas/', index3),
-    path('imc/<peso>/<altura>', imc),
-    path('mis_familiares/', mostrar_familiares),
     path('home/', blog_index),
-    path('mi-familia/buscar', BuscarFamiliar.as_view()),
-    path('mi-familia/alta', AltaFamiliar.as_view()),
-    path('panel-familia/', include('panel_familia.urls')),
     path('blog/', include('blog.urls')),
 ]
 
