@@ -1,5 +1,5 @@
 from django import forms
-from App.models import Familiar
+from ejemplo.models import Familiar
 
 class Buscar(forms.Form):
   nombre = forms.CharField(max_length=100)
